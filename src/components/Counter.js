@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { increase, decrease } from '../actions'
 
 class Counter extends Component {
   static propTypes = {
-    // value: PropTypes.number.isRequired,
-    // onIncrement: PropTypes.func.isRequired,
-    // onDecrement: PropTypes.func.isRequired
+    value: PropTypes.number.isRequired,
+    increase: PropTypes.func.isRequired,
+    decrease: PropTypes.func.isRequired,
   }
 
   render() {
-    const { value, onIncrement, onDecrement } = this.props
+    const { value, increase, decrease } = this.props
 
     return (
       <p>
         Clicked: {value} times
         {' '}
-        <button onClick={() => this.props.increase()}>
+        <button onClick={() => increase()}>
           +
         </button>
+        
         {' '}
-        <button onClick={() => this.props.decrease()}>
+        <button onClick={() => decrease()}>
           -
         </button>
       </p>
@@ -29,22 +28,4 @@ class Counter extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    value: state
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  increase: () => {
-    dispatch(increase)
-  },
-  decrease: () => {
-    dispatch(decrease)
-  }
-})
-
-export default connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(Counter)
+export default Counter
